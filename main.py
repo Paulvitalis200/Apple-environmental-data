@@ -7,6 +7,8 @@ from dash import callback, html, Output, Input, dcc
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.LUX])
 
+server = app.server 
+
 def load_data():
     df = pd.read_csv("assets/Dataset/apple_emissions/greenhouse_gas_emissions.csv")
 
@@ -82,4 +84,4 @@ def update_emissions(selected_toggle):
     return fig
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host='0.0.0.0', debug=False)
