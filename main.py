@@ -9,6 +9,7 @@ import plotly.graph_objects as go
 # Initialize App
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.LUX])
 
+server = app.server
 
 # --- Data Loading & Processing ---
 def load_all_data():
