@@ -50,6 +50,7 @@ DARK_LAYOUT = dict(
     legend=dict(font=dict(color='white')),
     xaxis=dict(color='white', gridcolor='rgba(255,255,255,0.1)'),
     yaxis=dict(color='white', gridcolor='rgba(255,255,255,0.1)'),
+    hoverlabel=dict(bgcolor='#1a1230', font_color='white', bordercolor='#2a2040'),
 )
 
 
