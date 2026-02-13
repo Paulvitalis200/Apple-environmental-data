@@ -131,6 +131,10 @@ def create_scope_breakdown_chart(df):
                 })
    # Make bars clickable
    fig.update_layout(clickmode='event+select', **DARK_LAYOUT)
+   fig.update_layout(
+        legend=dict(orientation='h', yanchor='top', y=-0.2, xanchor='center', x=0.5, font=dict(color='white')),
+        margin=dict(l=40, r=20, t=40, b=80),
+    )
    return fig
 
 
@@ -229,9 +233,9 @@ app.layout = dbc.Container([
   
    # KPI Row
    dbc.Row([
-       dbc.Col(dbc.Card(dbc.CardBody([html.H4(kpi_reduction, className="text-danger" if "-" not in kpi_reduction else "text-success"), html.P("Change Since 2015", className="text-muted")]), className="text-center"), width=4),
-       dbc.Col(dbc.Card(dbc.CardBody([html.H4(kpi_total), html.P(f"Total Emissions ({df_emissions['Fiscal Year'].max()})", className="text-muted")]), className="text-center"), width=4),
-       dbc.Col(dbc.Card(dbc.CardBody([html.H4(kpi_scope), html.P("Largest Contributor", className="text-muted")]), className="text-center"), width=4),
+       dbc.Col(dbc.Card(dbc.CardBody([html.H4(kpi_reduction, className="text-danger" if "-" not in kpi_reduction else "text-success"), html.P("Change Since 2015", className="text-muted")]), className="text-center"), xs=12, md=4, className="mb-3"),
+       dbc.Col(dbc.Card(dbc.CardBody([html.H4(kpi_total), html.P(f"Total Emissions ({df_emissions['Fiscal Year'].max()})", className="text-muted")]), className="text-center"), xs=12, md=4, className="mb-3"),
+       dbc.Col(dbc.Card(dbc.CardBody([html.H4(kpi_scope), html.P("Largest Contributor", className="text-muted")]), className="text-center"), xs=12, md=4, className="mb-3"),
    ], className="mb-4"),
 
 
@@ -251,14 +255,14 @@ app.layout = dbc.Container([
                className="mb-2"
            ),
            dcc.Graph(id='total-emissions-chart', style={'height': '400px'}, config={'responsive': True})
-       ], width=6),
-       dbc.Col(dcc.Graph(id='intensity-chart', figure=create_intensity_chart(df_emissions, df_normalizing), style={'height': '400px'}, config={'responsive': True}), width=6),
+       ], xs=12, lg=6, className="mb-3"),
+       dbc.Col(dcc.Graph(id='intensity-chart', figure=create_intensity_chart(df_emissions, df_normalizing), style={'height': '400px'}, config={'responsive': True}), xs=12, lg=6, className="mb-3"),
    ]),
 
 
    # Row 2: Scope Analysis
    dbc.Row([
-       dbc.Col(dcc.Graph(id='scope-breakdown-chart', figure=create_scope_breakdown_chart(df_emissions), style={'height': '400px'}, config={'responsive': True}), width=6),
+       dbc.Col(dcc.Graph(id='scope-breakdown-chart', figure=create_scope_breakdown_chart(df_emissions), style={'height': '400px'}, config={'responsive': True}), xs=12, lg=6, className="mb-3"),
        dbc.Col([
            html.Br(),
            html.Label("Select Year for Scope 3 Detail:"),
@@ -271,20 +275,20 @@ app.layout = dbc.Container([
                step=None
            ),
            dcc.Graph(id='scope3-sunburst', style={'height': '400px'}, config={'responsive': True})
-       ], width=6),
+       ], xs=12, lg=6, className="mb-3"),
    ], className="mt-4"),
 
 
    # Row 3: Product & Scorecard
    dbc.Row([
-       dbc.Col(dcc.Graph(figure=create_product_chart(df_products), style={'height': '400px'}, config={'responsive': True}), width=8), 
+       dbc.Col(dcc.Graph(figure=create_product_chart(df_products), style={'height': '400px'}, config={'responsive': True}), xs=12, lg=8, className="mb-3"), 
        dbc.Col(dbc.Card([
             dbc.CardHeader("Performance Scorecard (2015 vs 2022)"),
             dbc.ListGroup(
                 calculate_scorecard_items(df_emissions),
                 flush=True
             )
-       ]), width=4),
+       ]), xs=12, md=4, className="mb-3"),
    ], className="mt-4 mb-5"),
 
 
