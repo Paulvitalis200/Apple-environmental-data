@@ -1,4 +1,160 @@
+/* Montserrat Font Faces */
+@font-face {
+    font-family: 'Montserrat';
+    src: url('/assets/montserrat/Montserrat-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('/assets/montserrat/Montserrat-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('/assets/montserrat/Montserrat-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('/assets/montserrat/Montserrat-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('/assets/montserrat/Montserrat-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Changa';
+    src: url('/assets/Changa_One/ChangaOne-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Bebas Neue';
+    src: url('/assets/bebas_neue/BebasNeue-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
 body {
-    background-image: #e2ebf0;
-    font-family: 'Poppins';
+    background-color: #1B162B;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    color: white !important;
+}
+
+h1 {
+    font-family: 'Bebas Neue', sans-serif;
+}
+
+.text-muted {
+    color: #E3E3E3 !important;
+}
+
+.card {
+    background-color: #1a1230;
+    color: white;
+    border: 1px solid #2a2040;
+}
+
+.list-group-item {
+    background-color: #1a1230;
+    color: white;
+    border-color: #2a2040;
+}
+
+.card-header {
+    background-color: #221842;
+    color: white;
+    border-bottom: 1px solid #2a2040;
+}
+
+label {
+    color: white;
+}
+
+/* Dropdown button */
+button.dash-dropdown {
+    background-color: #1a1230 !important;
+    border: 1px solid #2a2040 !important;
+    color: white !important;
+}
+
+button.dash-dropdown span {
+    color: white !important;
+}
+
+/* Dropdown arrow/chevron icon */
+button.dash-dropdown svg {
+    fill: white !important;
+    color: white !important;
+}
+
+/* Dropdown menu */
+.dash-dropdown-content {
+    background-color: #1a1230 !important;
+    border: 1px solid #2a2040 !important;
+}
+
+/* Dropdown search input */
+.dash-dropdown-search {
+    background-color: #ffffff !important;
+    color: black !important;
+    /* border: 1px solid #2a2040 !important; */
+    outline: none !important;
+}
+
+.dash-dropdown-search::placeholder {
+    color: #b0b0b0 !important;
+}
+
+/* Dropdown options */
+.dash-dropdown-option {
+    color: white !important;
+    background-color: #1a1230 !important;
+}
+
+.dash-dropdown-option:hover,
+.dash-dropdown-option.selected {
+    background-color: #2a2040 !important;
+    color: white !important;
+}
+
+.rc-slider-track {
+    background-color: #007aff;
+}
+
+.rc-slider-rail {
+    background-color: #2a2040;
+}
+
+.rc-slider-dot,
+.rc-slider-handle {
+    border-color: #007aff;
+    background-color: #1a1230;
+}
+
+.rc-slider-mark-text {
+    color: #b0b0b0 !important;
 }

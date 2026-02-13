@@ -42,6 +42,17 @@ df_emissions, df_normalizing, df_products = load_all_data()
 
 # --- Helper Functions for Figures ---
 
+DARK_LAYOUT = dict(
+    paper_bgcolor='rgba(0,0,0,0)',
+    plot_bgcolor='rgba(0,0,0,0)',
+    font=dict(color='white'),
+    title_font=dict(color='white'),
+    legend=dict(font=dict(color='white')),
+    xaxis=dict(color='white', gridcolor='rgba(255,255,255,0.1)'),
+    yaxis=dict(color='white', gridcolor='rgba(255,255,255,0.1)'),
+)
+
+
 
 def create_total_emissions_chart(df, selected_scope='All'):
    # Filter for total gross emissions
@@ -69,7 +80,8 @@ def create_total_emissions_chart(df, selected_scope='All'):
        x0=2015, y0=0, x1=2030, y1=0,
        line=dict(color="green", width=2, dash="dash"),
    )
-   fig.add_annotation(x=2030, y=0, text="2030 Goal: Net Zero", showarrow=True, arrowhead=1)
+   fig.add_annotation(x=2030, y=0, text="2030 Goal: Net Zero", showarrow=True, arrowhead=1, arrowcolor='white', font=dict(color='white'))
+   fig.update_layout(**DARK_LAYOUT)
   
    return fig
 
@@ -101,7 +113,8 @@ def create_intensity_chart(df_em, df_norm, selected_scope='All'):
                             line=dict(color='#007aff', width=3)))
   
    fig.update_layout(title=f'Carbon Intensity {title_suffix}',
-                     yaxis_title='Metric Tons CO2e / $M Revenue')
+                     yaxis_title='Metric Tons CO2e / $M Revenue',
+                     **DARK_LAYOUT)
    return fig
 
 
@@ -116,7 +129,7 @@ def create_scope_breakdown_chart(df):
                     'Scope 3': '#5ac8fa'
                 })
    # Make bars clickable
-   fig.update_layout(clickmode='event+select')
+   fig.update_layout(clickmode='event+select', **DARK_LAYOUT)
    return fig
 
 
@@ -127,6 +140,7 @@ def create_scope3_sunburst(df, year):
    fig = px.sunburst(scope3, path=['Description'], values='Emissions',
                      title=f'Scope 3 Details ({year})',
                      color='Emissions', color_continuous_scale='RdBu_r')
+   fig.update_layout(**DARK_LAYOUT)
    return fig
 
 
@@ -138,6 +152,7 @@ def create_product_chart(df):
                 color_continuous_scale='Viridis')
    # Add trendline
    fig.add_trace(go.Scatter(x=df['Product'], y=df['Carbon Footprint'], mode='lines', line=dict(color='red', dash='dot'), name='Trend'))
+   fig.update_layout(**DARK_LAYOUT)
    return fig
 
 
@@ -207,7 +222,7 @@ def calculate_scorecard_items(df):
 app.layout = dbc.Container([
    # Header
    dbc.Row([
-       dbc.Col(html.H1("Corporate Climate Emissions Tracker", className="text-center my-4"), width=12),
+       dbc.Col(html.H1("Corporate Climate Emissions Tracker (Apple)", className="text-center my-4"), width=12),
        dbc.Col(html.P("Tracking progress towards 2030 Net Zero Goal", className="text-center text-muted"), width=12),
    ]),
   
@@ -251,7 +266,7 @@ app.layout = dbc.Container([
                min=df_emissions['Fiscal Year'].min(),
                max=df_emissions['Fiscal Year'].max(),
                value=df_emissions['Fiscal Year'].max(),
-               marks={str(year): str(year) for year in df_emissions['Fiscal Year'].unique()},
+                marks={str(year): {'label': str(year), 'style': {'color': 'white'}} for year in df_emissions['Fiscal Year'].unique()},
                step=None
            ),
            dcc.Graph(id='scope3-sunburst', style={'height': '400px'}, config={'responsive': True})
